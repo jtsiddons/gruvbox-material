@@ -250,11 +250,7 @@ else
     endif
   endif
 endif
-if s:configuration.dim_inactive_windows
-  call gruvbox_material#highlight('VertSplit', s:palette.bg4, s:palette.bg_dim)
-else
-  call gruvbox_material#highlight('VertSplit', s:palette.bg5, s:palette.none)
-endif
+call gruvbox_material#highlight('VertSplit', s:palette.fg1, s:palette.fg1)
 highlight! link WinSeparator VertSplit
 if s:configuration.visual ==# 'grey background'
   call gruvbox_material#highlight('Visual', s:palette.none, s:palette.bg3)
@@ -344,9 +340,9 @@ if has('nvim')
 endif
 " }}}
 " Syntax: {{{
-call gruvbox_material#highlight('Boolean', s:palette.purple, s:palette.none)
 call gruvbox_material#highlight('Number', s:palette.purple, s:palette.none)
 call gruvbox_material#highlight('Float', s:palette.purple, s:palette.none)
+call gruvbox_material#highlight('Boolean', s:palette.green, s:palette.none, "italic")
 if s:configuration.enable_italic
   call gruvbox_material#highlight('PreProc', s:palette.purple, s:palette.none, 'italic')
   call gruvbox_material#highlight('PreCondit', s:palette.purple, s:palette.none, 'italic')
@@ -358,7 +354,9 @@ if s:configuration.enable_italic
   call gruvbox_material#highlight('Typedef', s:palette.red, s:palette.none, 'italic')
   call gruvbox_material#highlight('Exception', s:palette.red, s:palette.none, 'italic')
   call gruvbox_material#highlight('Statement', s:palette.red, s:palette.none, 'italic')
+  call gruvbox_material#highlight('Function', s:palette.green, s:palette.none, 'italic')
 else
+  "call gruvbox_material#highlight('Boolean', s:palette.purple, s:palette.none)
   call gruvbox_material#highlight('PreProc', s:palette.purple, s:palette.none)
   call gruvbox_material#highlight('PreCondit', s:palette.purple, s:palette.none)
   call gruvbox_material#highlight('Include', s:palette.purple, s:palette.none)
@@ -369,6 +367,7 @@ else
   call gruvbox_material#highlight('Typedef', s:palette.red, s:palette.none)
   call gruvbox_material#highlight('Exception', s:palette.red, s:palette.none)
   call gruvbox_material#highlight('Statement', s:palette.red, s:palette.none)
+  call gruvbox_material#highlight('Function', s:palette.green, s:palette.none)
 endif
 call gruvbox_material#highlight('Error', s:palette.red, s:palette.none)
 call gruvbox_material#highlight('StorageClass', s:palette.orange, s:palette.none)
@@ -380,11 +379,6 @@ call gruvbox_material#highlight('Title', s:palette.orange, s:palette.none, 'bold
 call gruvbox_material#highlight('Special', s:palette.yellow, s:palette.none)
 call gruvbox_material#highlight('SpecialChar', s:palette.yellow, s:palette.none)
 call gruvbox_material#highlight('Type', s:palette.yellow, s:palette.none)
-if s:configuration.enable_bold
-  call gruvbox_material#highlight('Function', s:palette.green, s:palette.none, 'bold')
-else
-  call gruvbox_material#highlight('Function', s:palette.green, s:palette.none)
-endif
 call gruvbox_material#highlight('String', s:palette.green, s:palette.none)
 call gruvbox_material#highlight('Character', s:palette.green, s:palette.none)
 call gruvbox_material#highlight('Constant', s:palette.aqua, s:palette.none)
@@ -614,11 +608,11 @@ call gruvbox_material#highlight('TSWarning', s:palette.bg0, s:palette.yellow, 'b
 call gruvbox_material#highlight('TSDanger', s:palette.bg0, s:palette.red, 'bold')
 highlight! link TSAnnotation Purple
 highlight! link TSAttribute Purple
-highlight! link TSBoolean Purple
+highlight! link TSBoolean PurpleItlaic
 highlight! link TSCharacter Aqua
 highlight! link TSCharacterSpecial SpecialChar
 highlight! link TSComment Comment
-highlight! link TSConditional Red
+highlight! link TSConditional RedItalic
 highlight! link TSConstBuiltin PurpleItalic
 highlight! link TSConstMacro PurpleItalic
 highlight! link TSConstant Fg
@@ -636,10 +630,10 @@ highlight! link TSFuncMacro GreenBold
 highlight! link TSFunction GreenBold
 highlight! link TSFunctionCall GreenBold
 highlight! link TSInclude Red
-highlight! link TSKeyword Red
-highlight! link TSKeywordFunction Red
+highlight! link TSKeyword RedItalic
+highlight! link TSKeywordFunction RedItalic
 highlight! link TSKeywordOperator Orange
-highlight! link TSKeywordReturn Red
+highlight! link TSKeywordReturn RedItalic
 highlight! link TSLabel Orange
 highlight! link TSLiteral String
 highlight! link TSMath Blue
@@ -656,7 +650,7 @@ highlight! link TSProperty Blue
 highlight! link TSPunctBracket Fg
 highlight! link TSPunctDelimiter Grey
 highlight! link TSPunctSpecial Blue
-highlight! link TSRepeat Red
+highlight! link TSRepeat RedItalic
 highlight! link TSStorageClass Orange
 highlight! link TSStorageClassLifetime Orange
 highlight! link TSStrike Grey
@@ -763,6 +757,7 @@ if has('nvim-0.8')
   highlight! link @storageclass.lifetime TSStorageClassLifetime
   highlight! link @strike TSStrike
   highlight! link @string TSString
+  highlight! link @string.documentation AquaItalic
   highlight! link @string.escape TSStringEscape
   highlight! link @string.regex TSStringRegex
   highlight! link @string.regexp TSStringRegex
@@ -1904,7 +1899,7 @@ endif
 " }}}
 " syn_end }}}
 " syn_begin: vimwiki {{{
-call gruvbox_material#highlight('VimwikiHeader1', s:palette.red, s:palette.none, 'bold')
+call gruvbox_material#highlight('VimwikiHeader1', s:palette.blue, s:palette.none, 'bold')
 call gruvbox_material#highlight('VimwikiHeader2', s:palette.orange, s:palette.none, 'bold')
 call gruvbox_material#highlight('VimwikiHeader3', s:palette.yellow, s:palette.none, 'bold')
 call gruvbox_material#highlight('VimwikiHeader4', s:palette.green, s:palette.none, 'bold')
@@ -2047,7 +2042,7 @@ highlight! link scssSelectorName RedItalic
 highlight! link scssInterpolationDelimiter Green
 highlight! link scssVariableValue Green
 highlight! link scssNull Purple
-highlight! link scssBoolean Purple
+highlight! link scssBoolean PurpleItalic
 highlight! link scssVariableAssignment Grey
 highlight! link scssForKeyword PurpleItalic
 highlight! link scssAttribute Orange
@@ -3068,7 +3063,7 @@ highlight! link yamlConstant Purple
 " syn_begin: toml {{{
 call gruvbox_material#highlight('tomlTable', s:palette.purple, s:palette.none, 'bold')
 highlight! link tomlKey Orange
-highlight! link tomlBoolean Aqua
+highlight! link tomlBoolean AquaItalic
 highlight! link tomlTableArray tomlTable
 " syn_end }}}
 " syn_begin: gitcommit {{{
